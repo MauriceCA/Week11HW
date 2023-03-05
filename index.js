@@ -27,13 +27,10 @@ for (let i = 0; i < cells.length; i++){
         }); 
     } 
 
-
-            
 const playerX = 'X';
 const playerO = 'O';
 let currentPlayer = playerX;
-let gameEnd = false;
-let winnerMessage = document.getElementById('winnerMessage');
+
 
 function checkForWin(){
     const cell0 = document.getElementById(0).innerHTML;
@@ -46,6 +43,7 @@ function checkForWin(){
     const cell7 = document.getElementById(7).innerHTML;
     const cell8 = document.getElementById(8).innerHTML;
 
+    //checks for X win
     if((cell0 == 'X') && (cell1 == 'X') && (cell2 == 'X')){
         alert("Player X Won!", 'danger');
         instructions.innerHTML = "Please reset game to play again";
@@ -72,7 +70,7 @@ function checkForWin(){
         alert("Player X Won!", 'danger');
         instructions.innerHTML = "Please reset game to play again";
     }
-
+    //checks for O win
     if((cell0 == 'O') && (cell1 == 'O') && (cell2 == 'O')){
         alert("Player O Won!", 'danger');
         instructions.innerHTML = "Please reset game to play again";
@@ -98,20 +96,20 @@ function checkForWin(){
         winnerMessage.innerHTML = `Player O Won!`
         alert("Player O Won!", 'danger');
         instructions.innerHTML = "Please reset game to play again";
+        //checks for tie
     } else if((cell0 == "X" || cell0 == "O") && (cell1 == "X" || cell1 == "O") && (cell2 == "X" || cell2 == "O") && (cell3 == "X" || cell3 == "O") 
     && (cell4 == "X" || cell4 == "O") && (cell5 == "X" || cell5 == "O") && (cell6 == "X" || cell6 == "O") && (cell7 == "X" || cell7 == "O") && (cell8 == "X" || cell8 == "O")){
         alert("It's a TIE! Please restart the game to play again", 'primary');
-        console.log(alert)
         instructions.innerHTML = "GAME OVER";
     }
 }
 
-
+//Resets the game
 function resetGame(){
     window.location.reload();
-    // document.getElementById(0).innerHTML = '';
-    // document.getElementById(1).innerHTML = '';
-    // document.getElementById(2).innerHTML = '';
+    // document.getElementById(0).innerHTML = ''; originally used the reset button to return all
+    // document.getElementById(1).innerHTML = ''; the cells to empty strings but decided to set
+    // document.getElementById(2).innerHTML = ''; the button to refresh the whole page
     // document.getElementById(3).innerHTML = '';
     // document.getElementById(4).innerHTML = '';
     // document.getElementById(5).innerHTML = '';
@@ -122,7 +120,7 @@ function resetGame(){
     // winnerMessage.innerHTML = '';
 }
 
-
+//Alert Message
 const alertPlaceholder = document.getElementById('AlertPlaceholder')
 
 const alert = (message, type) => {
