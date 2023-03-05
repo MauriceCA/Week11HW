@@ -1,0 +1,20 @@
+/* div {
+    border: solid black;
+} */
+
+header, h2, #winnerMessage {
+    text-align: center;
+}
+
+hr {
+    width: auto;
+    height: 8px;
+    background-color: darkred;
+}
+
+.cell {
+    text-align: center;
+    font-size: 4em;
+    height: 20vh;
+}
+
