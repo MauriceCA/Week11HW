@@ -24,7 +24,7 @@ for (let i = 0; i < cells.length; i++){
                     instructions.innerHTML = `It is now Player ${currentPlayer}'s turn`;
                     turn++;
                     checkForWin();
-
+ 
                     //!turn off event listener not working
                 } if (gameActive == false){
                     for (let i = 0; i < cells.length; i++){
@@ -149,6 +149,3 @@ const alert = (message, type) => {
   
     alertPlaceholder.append(wrapper)
   }
-  
-
-      
