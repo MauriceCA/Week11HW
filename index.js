@@ -2,7 +2,7 @@
 let instructions = document.getElementById('instructions');
 
 let cells = document.getElementsByClassName('cell');
-
+let gameActive = true;
 
 let turn = 0;
 for (let i = 0; i < cells.length; i++){
@@ -10,23 +10,32 @@ for (let i = 0; i < cells.length; i++){
             if(event.target.innerHTML == "X"|| event.target.innerHTML == "O"){
                 console.log('has value inside')
                 return;
-            }
-                else if (turn % 2 == 0) {
+                
+            }else if (turn % 2 == 0) {
                     event.target.innerHTML = 'X';   //if the turn is even, it's X's turn
                     currentPlayer = playerO;
                     instructions.innerHTML = `It is now Player ${currentPlayer}'s turn`;
                     turn++
                     checkForWin()
+                    // endGame();
                 } else if(turn % 2 == 1){
                     event.target.innerHTML = 'O';  //if the turn is odd, it's 0's turn
                     currentPlayer = playerX;
                     instructions.innerHTML = `It is now Player ${currentPlayer}'s turn`;
                     turn++;
-                    checkForWin();                
-            }
-        }); 
-    } 
+                    checkForWin();
 
+                    //!turn off event listener not working
+                } if (gameActive == false){
+                    for (let i = 0; i < cells.length; i++){
+                        cells[i].removeEventListener('click', () => {
+                        return;
+                    });
+                }
+            }
+        });
+} 
+ 
 const playerX = 'X';
 const playerO = 'O';
 let currentPlayer = playerX;
@@ -45,6 +54,8 @@ function checkForWin(){
 
     //checks for X win
     if((cell0 == 'X') && (cell1 == 'X') && (cell2 == 'X')){
+        gameActive = false;
+        console.log(gameActive)
         alert("Player X Won!", 'danger');
         instructions.innerHTML = "Please reset game to play again";
     } else if((cell3 == "X") && (cell4 == "X") && (cell5 == "X")){
@@ -69,6 +80,7 @@ function checkForWin(){
         winnerMessage.innerHTML = `Player X Won!`
         alert("Player X Won!", 'danger');
         instructions.innerHTML = "Please reset game to play again";
+
     }
     //checks for O win
     if((cell0 == 'O') && (cell1 == 'O') && (cell2 == 'O')){
@@ -96,6 +108,7 @@ function checkForWin(){
         winnerMessage.innerHTML = `Player O Won!`
         alert("Player O Won!", 'danger');
         instructions.innerHTML = "Please reset game to play again";
+
         //checks for tie
     } else if((cell0 == "X" || cell0 == "O") && (cell1 == "X" || cell1 == "O") && (cell2 == "X" || cell2 == "O") && (cell3 == "X" || cell3 == "O") 
     && (cell4 == "X" || cell4 == "O") && (cell5 == "X" || cell5 == "O") && (cell6 == "X" || cell6 == "O") && (cell7 == "X" || cell7 == "O") && (cell8 == "X" || cell8 == "O")){
@@ -103,6 +116,8 @@ function checkForWin(){
         instructions.innerHTML = "GAME OVER";
     }
 }
+
+
 
 //Resets the game
 function resetGame(){
